@@ -175,6 +175,10 @@ $('.cart').click(function(){
     $('.user_cart').removeClass('hide')
 })
 
+$('.form').click(function(){
+    $('.user_cart').removeClass('hide')
+})
+
 function add_basket(code, parent) {
     let data = {}
     let csrf_token = $('.basket [name="csrfmiddlewaretoken"]').val()
