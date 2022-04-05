@@ -1,0 +1,14 @@
+{% load static %}
+
+<div class="list-all-category neonBorder">
+
+
+    <div class="neonText catalog_title off"><img src="{% static 'shop/img/down.png' %}" alt="123">  Каталог товаров</div>
+    {% for category in categorys %}
+        {% if category.title == title %}
+        <div class="item neonTextBlue"><a href="{{category.slug}}">{{category.title}}</a></div>
+        {% else %}
+        <div class="item neonText"><a href="{{category.slug}}">{{category.title}}</a></div>
+        {% endif %}
+    {% endfor %}
+</div>

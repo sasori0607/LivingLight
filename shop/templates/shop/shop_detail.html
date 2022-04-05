@@ -1,0 +1,111 @@
+{% extends 'content/base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ seo.title }}
+{% endblock %}
+
+{% block description %}
+    {{ seo.description }}
+{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+
+<div class="shop_detail">
+    <div class="neonText bread_crumbs">
+        <a href="{% url 'shop_main' %}">Главный раздел</a>/<a href="/shop/{{product.category}}">{{product.category.title}}</a>
+    </div>
+    <h1>Ночник {{ product.category.title }} {{ product.title }}</h1>
+
+    <div style="height:28px;">
+        <div style="margin-right:5%;" class="vendor_code">Код: {{ product.vendor_code }} </div>
+    </div>
+<!--    {{object.pictures.first}}-->
+    <div class="product_all">
+        <div class="product_gallery">
+            <div class="main_img">
+                <img src="{{object.pictures.first.image.url}}" alt="">
+            </div>
+
+            <div class="miniatures">
+                {% for i in object.pictures.all %}
+                    <img src="{{i.image.url}}" alt="">
+                {% endfor %}
+            </div>
+
+        </div>
+        <div class="product_info">
+            <div class="all_services">
+                <div class="price_b">
+                    <div class="price">
+                        <p><span class="nmb">{{ product.without_remote }}</span><span style="font-size: 22px;"> ₴</span></p>
+                    </div>
+                    <div class="discount">
+                        {% if product.discountCheck == True %}
+                            <p><span class="old_price"></span> </p>
+                        {% endif %}
+                    </div>
+                    <div class="buy_btn">
+                        <button>Купить</button>
+                    </div>
+                </div>
+                <div class="detail_price">
+                    <div class="default active_row">
+                        Классический комплект
+                    </div>
+                    <div class="remote">
+                        Комплект с пультом
+                    </div>
+                    <div class="plate">
+                        Только пластину
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="icon">
+                <p>
+                    <img height="32px" src="{% static 'shop/img/100.png' %}" alt="+">
+                    Гарантия 12 месяцев <a href="">Детали</a>
+                </p>
+                <p>
+                    <img height="32px" src="{% static 'shop/img/garant.png' %}" alt="+">
+                    Качество
+                </p>
+                <p>
+                    <img height="32px" src="{% static 'shop/img/delivery.png' %}" alt="+">
+                    Отправка в день заказа
+                </p>
+
+            </div>
+
+
+        </div>
+        <div class="description">
+            {{ product.description|safe }}
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<script>
+    var all_price = {
+        'vendor_code' : '{{ product.vendor_code }}',
+        'remote' : '{{ product.with_remote }}',
+        'plate' : '{{ product.prise_plate }}',
+        'default' : '{{ product.without_remote }}'
+    }
+    discount_detail = {{ product.discount }}
+</script>
+
+
+{% endblock %}
+
+

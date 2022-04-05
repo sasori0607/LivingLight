@@ -1,0 +1,66 @@
+{% extends 'content/base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ seo.title }}
+{% endblock %}
+
+{% block description %}
+    {{ seo.description }}
+{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+<div class="shop_category">
+
+    {% include 'include/shop_menu.html' %}
+    <div class="category_body">
+        <h1>{{title}}</h1>
+        <div class="shop_body">
+        {% for product in products %}
+            {% if product.category.slug == slug %}
+                <div class="product">
+                <div class="image">
+                    <a href="{{ product.category.slug }}/{{ product.slug }}">
+                        <img src="{{ product.img.url }}" alt="{{ product.title }}">
+                    </a>
+                </div>
+                <div class="title">
+                    <a href="{{ product.category.slug }}/{{ product.slug }}">
+                        {{ product.title }}
+                    </a>
+                </div>
+                <div class="discount">
+                    {% if product.discountCheck == True %}
+                        <p>Скидка <span class="percent">{{ product.discount }}</span>% <span class="old_price"></span> </p>
+                    {% endif %}
+                </div>
+
+                <div class="tile_price">
+                    <p> <span>{{ product.without_remote }}</span> ₴</p>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+
+
+        <div style="width:100%" class="meta">
+            {{ seo.main_text|safe }}
+        </div>
+        <div class="row_open_all_meta"><img style="padding-top:10px;" src="{% static 'shop/img/down.png' %}" alt=""></div>
+
+    </div>
+    </div>
+
+
+
+</div>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'content/base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ seo.title }}
+{% endblock %}
+
+{% block description %}
+    {{ seo.description }}
+{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+
+<div class="about">
+
+    <div class="block_1">
+    <p>
+      LivingLite — это всегда оригинальный 3D светильник который идеален как подарок
+      второй половинке. Основан в 2021году, мы в начале нашего пути;)
+
+    </p>
+        {{ seo.main_text|safe }}
+
+        <video src="{% static 'content/video/1.mp4' %}" controls>
+
+        </video>
+    </div>
+
+
+</div>
+
+
+
+
+
+{% endblock %}

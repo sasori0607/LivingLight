@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="google-site-verification" content="1IyKTiBXOfmYFgwERMXVNoKRh20_dFJK3ueNlEbM5EU" />
+    <link rel="icon" href="{% static 'content/img/logo.webp' %}" type=”image/x-icon”>
+    <meta charset="UTF-8">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> {% block title %} {% endblock %}</title>
+    <meta name="description" content="{% block description %} {% endblock %}" />
+
+    {% block head %}  {% endblock %}
+    <link rel="stylesheet" href="{% static 'content/main.css' %}">
+
+</head>
+<body>
+
+<nav>
+    <div class="nav_body">
+        <div class="logo">
+            <a href="/"><img src="{% static 'content/img/logo.png' %}" alt=""></a>
+        </div>
+        <div class="cart">
+            <img src="{% static 'content/img/bascket.png' %}" alt="">
+            <div class="count">{{ request.session.sum }}</div>
+        </div>
+        <div class="menu">
+            <div class="menu_icon" >
+                <img height="35px"  src="{% static 'content/img/pngegg.png' %}" alt="">
+            </div>
+
+            <div class="neonText">
+                <div class="part_1">
+                    <div class="close"></div>
+                    <ul>
+                    <li>
+                        <a href="{% url 'home' %}">Главная</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'shop_main' %}">Магазин</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'about' %}">О нас</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'contacts' %}">Контакты</a>
+                    </li>
+                </ul>
+                </div>
+                <div class="part_2"></div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
+
+{% if messages %}
+    <div class="ss">
+
+        <div class="mess">
+            {% for i in messages %}
+                {{ i }}
+            {% endfor %}
+        </div>
+
+    </div>
+{% endif %}
+
+
+
+<div class="body">
+<div class="gag">
+    <form class="basket" action="">
+       {% csrf_token %}
+    </form>
+</div>
+
+    {% block body %}
+
+
+    {% endblock %}
+
+</div>
+
+<div class="user_cart hide">
+    <div class="cart_body">
+        <div class="cart_head">
+            <h2>Корзина</h2>
+            <div class="cart_exit"></div>
+        </div>
+        <div class="all_products">
+
+        </div>
+        <div class="footer_count">
+            <p id="cart_sum"></p>
+            <div class="cart_buy_btn">
+                <button>Оформить заказ</button>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="form">
+    <div class="form_body">
+        <h3>Оформення заказу</h3>
+
+        <form id=".form" action="{% url 'order' %}", method="post">
+            <input type="text" class="form_inputs" name="name" placeholder="ФИО*" required><br>
+            <div><input type="text" class="form_inputs" data-lazy="" id = "town" name="town" autocomplete="off" placeholder="Город доставки*" required></div>
+            <div><input type="text" class="form_inputs" id = "department" name="department" autocomplete="off" placeholder="Отделение новой почты*" required></div>
+            <input type="email" class="form_inputs" id = "email" name="email" placeholder="Email"><br>
+            <input type="tel" class="form_inputs" id = "tel" name="tel" placeholder="Номер телефона" required><br>
+            <input type="text" class="form_inputs" id = "comment" name="comment" autocomplete="off" placeholder="Комментарий к заказу" ><br>
+
+            <div class="form_bttn_buy">
+                <button>Заказать</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="foot_body">
+        ++++
+    </div>
+</footer>
+
+
+
+
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!--    Подключка Анимаций-->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    {% block script %}
+
+    {% endblock %}
+
+    <script type="text/javascript" src="{% static 'content/main.js' %}"></script>
+
+
+
+
+
+
+</div>
+
+</body>
+</html>
