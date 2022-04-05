@@ -175,8 +175,8 @@ $('.cart').click(function(){
     $('.user_cart').removeClass('hide')
 })
 
-$('.form').click(function(){
-    $('.user_cart').removeClass('hide')
+$('.cart_buy_btn').click(function(){
+    $('.form').removeClass('hide')
 })
 
 function add_basket(code, parent) {

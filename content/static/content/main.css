@@ -807,7 +807,7 @@ nav .cart img{
 
 
 .hide{
-    display:none;
+    display:none!important;
 }
 
 .price{
