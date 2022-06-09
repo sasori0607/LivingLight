@@ -1,0 +1,5 @@
+pictures/
+htmlcov
+.env.dev
+.env.dev.db
+db.sqlite3

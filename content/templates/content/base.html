@@ -13,6 +13,9 @@
 
     {% block head %}  {% endblock %}
     <link rel="stylesheet" href="{% static 'content/main.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -20,7 +23,7 @@
 <nav>
     <div class="nav_body">
         <div class="logo">
-            <a href="/"><img src="{% static 'content/img/logo.png' %}" alt=""></a>
+            <a href="/"><img src="{% static 'content/img/logo.webp' %}" alt=""></a>
         </div>
         <div class="cart">
             <img src="{% static 'content/img/bascket.png' %}" alt="">
@@ -35,19 +38,19 @@
                 <div class="part_1">
                     <div class="close"></div>
                     <ul>
-                    <li>
-                        <a href="{% url 'home' %}">Главная</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'shop_main' %}">Магазин</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'about' %}">О нас</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'contacts' %}">Контакты</a>
-                    </li>
-                </ul>
+                        <li>
+                            <a href="{% url 'home' %}">Главная</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'shop_main' %}">Магазин</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'about' %}">О нас</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'contacts' %}">На заказ</a>
+                        </li>
+                    </ul>
                 </div>
                 <div class="part_2"></div>
             </div>
@@ -60,12 +63,12 @@
 
 {% if messages %}
     <div class="ss">
-
-        <div class="mess">
-            {% for i in messages %}
+        {% for i in messages %}
+            <div class="mess">
+                <div class="messages_exit"></div>
                 {{ i }}
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
 
     </div>
 {% endif %}
@@ -108,9 +111,12 @@
 
 <div class="form hide">
     <div class="form_body">
-        <h3>Оформення заказу</h3>
-
+        <div class="container">
+            <h3>Оформенние заказа</h3>
+            <div class="form_exit"></div>
+        </div>
         <form id=".form" action="{% url 'order' %}", method="post">
+
             <input type="text" class="form_inputs" name="name" placeholder="ФИО*" required><br>
             <div><input type="text" class="form_inputs" data-lazy="" id = "town" name="town" autocomplete="off" placeholder="Город доставки*" required></div>
             <div><input type="text" class="form_inputs" id = "department" name="department" autocomplete="off" placeholder="Отделение новой почты*" required></div>
@@ -127,9 +133,41 @@
 </div>
 
 <footer class="footer">
-    <div class="foot_body">
-        ++++
+
+
+    <div class="base-list-page">
+        <p>Навигация</p>
+        <ul>
+            <li>
+                <a href="{% url 'home' %}">Главная</a>
+            </li>
+            <li>
+                <a href="{% url 'shop_main' %}">Магазин</a>
+            </li>
+            <li>
+                <a href="{% url 'about' %}">О нас</a>
+            </li>
+            <li>
+                <a href="{% url 'contacts' %}">Контакты</a>
+            </li>
+        </ul>
     </div>
+    <div class="base-list-all-category ">
+        <p>Разделы</p>
+        <ul>
+            {% for category in categorys %}
+                <li>
+                    <a href="{{category.slug}}">{{category.title}}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="base-contacts">
+        <p>Наши контакты</p>
+        <div class=phone><a href="tel:+380950319896">+380950319896</a></div>
+        <div class="email"><a href= "mailto:abc@example.com">Send Email</a></div>
+    </div>
+
 </footer>
 
 

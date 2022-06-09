@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block title %}
-    {{ seo.title }}
+{{ seo.title }}
 {% endblock %}
 
 {% block description %}
-    {{ seo.description }}
+{{ seo.description }}
 {% endblock %}
 
 {% block head %}
@@ -17,38 +17,208 @@
 
 <div class="main_p">
 
-    <div class="block_1">
+    <div class="block_1 ">
+        <div class="s_container">
+            <h1 class="neonText" >3Д ночник в Украине</h1>
+            <div class="" >
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium et itaque magnam sequi vero?
+                    Aperiam consequatur et facere inventore porro reiciendis voluptas. Maxime nulla odio pariatur quidem
+                    quisquam ut vitae.
+                </p>
 
-    </div>
+            </div>
+            <div class="">
+                <div class="" data-aos="fade-right" data-aos-delay="150">
+                    <h2 class="neonTextBlue">Наши последние новинки</h2>
+                    <div class="shop_body">
+                        {% for product in newTrue %}
+                        <div class="product" data-aos="fade-up-right" data-aos-delay="100">
+                            <div class="image">
+                                <a href="{{ product.get_absolute_url }}">
+                                    <img src="{{ product.img.url }}" alt="{{ product.title }}">
+                                </a>
+                            </div>
+                            <div class="title">
+                                <a href="{{ product.get_absolute_url }}">
+                                    {{ product.title }}
+                                </a>
+                            </div>
+                            <div class="discount">
+                                {% if product.discountCheck == True %}
+                                <p>Скидка <span class="percent">{{ product.discount }}</span>% <span
+                                        class="old_price"></span>
+                                </p>
+                                {% endif %}
+                            </div>
 
-    <div class="block_2">
+                            <div class="tile_price">
+                                <p><span>{{ product.without_remote }}</span> ₴</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="" data-aos="fade-down" data-aos-delay="850">
+                    <h2 class="neonTextBlue">Рекомендуем нашим клиентам </h2>
+                    <div class="shop_body">
+                        {% for product in recommendation %}
+                        <div class="product" data-aos="fade-up-right" data-aos-delay="100">
+                            <div class="image">
+                                <a href="{{ product.get_absolute_url }}">
+                                    <img src="{{ product.img.url }}" alt="{{ product.title }}">
+                                </a>
+                            </div>
+                            <div class="title">
+                                <a href="{{ product.get_absolute_url }}">
+                                    {{ product.title }}
+                                </a>
+                            </div>
+                            <div class="discount">
+                                {% if product.discountCheck == True %}
+                                <p>Скидка <span class="percent">{{ product.discount }}</span>% <span
+                                        class="old_price"></span>
+                                </p>
+                                {% endif %}
+                            </div>
 
-
-
-        <div class="left_position w-30 ">
-            <div data-aos="fade-right">
-                <br>
-                <div class="ceo_text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium et itaque magnam sequi vero? Aperiam consequatur et facere inventore porro reiciendis voluptas. Maxime nulla odio pariatur quidem quisquam ut vitae.
+                            <div class="tile_price">
+                                <p><span>{{ product.without_remote }}</span> ₴</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
-             <div data-aos="fade-right">
 
-                <div class="ceo_text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium et itaque magnam sequi vero? Aperiam consequatur et facere inventore porro reiciendis voluptas. Maxime nulla odio pariatur quidem quisquam ut vitae.
+        </div>
+    </div>
+
+    <div class="block_2 ">
+        <div class="s_container">
+            <div class="cloudy">
+                <div class="w-40 " data-aos="fade-up" data-aos-delay="300" data-aos-anchor-placement="top-bottom">
+                    <br>
+                    <div class="ceo_text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium et itaque magnam sequi
+                        vero?
+                        Aperiam consequatur et facere inventore porro reiciendis voluptas. Maxime nulla odio pariatur
+                        quidem
+                        quisquam ut vitae.
+                    </div>
+                </div>
+
+                <div class="w-40 cloudy_right" data-aos="flip-left" data-aos-delay="300" data-aos-anchor-placement="top-bottom">
+                    <div class=" ceo_text">
+                        <video width="100%" src="{% static 'content/video/1.mp4' %}" controls>
+                        </video>
+                    </div>
+                </div>
+
+                <div class="w-40" data-aos="fade-up" data-aos-delay="300" data-aos-anchor-placement="top-bottom">
+
+                    <div class="ceo_text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium et itaque magnam sequi
+                        vero?
+                        Aperiam consequatur et facere inventore porro reiciendis voluptas. Maxime nulla odio pariatur
+                        quidem
+                        quisquam ut vitae.
+                    </div>
+                </div>
+
+                <div class="w-40 cloudy_right" data-aos="flip-left" data-aos-delay="300" data-aos-anchor-placement="top-bottom">
+                    <div class=" ceo_text">
+                        <video width="100%" src="{% static 'content/video/1.mp4' %}" controls>
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main_p_meta">
+                <div style="width:100%" class="meta block_4">
+                    {{ seo.main_text|safe }}
+                </div>
+                <div class="row_open_all_meta_main">
+                    <img style="padding-top:10px;" src="{% static 'shop/img/down.png' %}" alt="">
                 </div>
             </div>
         </div>
-
     </div>
 
+    <div class="block_3">
+        <!--        <div class="container">-->
+        <!--            <h2>Наши последние новинки</h2>-->
+        <!--            <div class="shop_body">-->
+        <!--                {% for product in newTrue %}-->
 
 
+        <!--                <div class="product">-->
+        <!--                    <div class="image">-->
+        <!--                        <a href="{{ product.get_absolute_url }}">-->
+        <!--                            <img src="{{ product.img.url }}" alt="{{ product.title }}">-->
+        <!--                        </a>-->
+        <!--                    </div>-->
+        <!--                    <div class="title">-->
+        <!--                        <a href="{{ product.get_absolute_url }}">-->
+        <!--                            {{ product.title }}-->
+        <!--                        </a>-->
+        <!--                    </div>-->
+        <!--                    <div class="discount">-->
+        <!--                        {% if product.discountCheck == True %}-->
+        <!--                        <p>Скидка <span class="percent">{{ product.discount }}</span>% <span class="old_price"></span>-->
+        <!--                        </p>-->
+        <!--                        {% endif %}-->
+        <!--                    </div>-->
 
+        <!--                    <div class="tile_price">-->
+        <!--                        <p><span>{{ product.without_remote }}</span> ₴</p>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+
+
+        <!--                {% endfor %}-->
+        <!--            </div>-->
+
+        <!--            <h2>Рекомендуем нашим клиентам </h2>-->
+        <!--            <div class="shop_body">-->
+        <!--                {% for product in recommendation %}-->
+        <!--                <div class="product">-->
+        <!--                    <div class="image">-->
+        <!--                        <a href="{{ product.get_absolute_url }}">-->
+        <!--                            <img src="{{ product.img.url }}" alt="{{ product.title }}">-->
+        <!--                        </a>-->
+        <!--                    </div>-->
+        <!--                    <div class="title">-->
+        <!--                        <a href="{{ product.get_absolute_url }}">-->
+        <!--                            {{ product.title }}-->
+        <!--                        </a>-->
+        <!--                    </div>-->
+        <!--                    <div class="discount">-->
+        <!--                        {% if product.discountCheck == True %}-->
+        <!--                        <p>Скидка <span class="percent">{{ product.discount }}</span>% <span class="old_price"></span>-->
+        <!--                        </p>-->
+        <!--                        {% endif %}-->
+        <!--                    </div>-->
+
+        <!--                    <div class="tile_price">-->
+        <!--                        <p><span>{{ product.without_remote }}</span> ₴</p>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--                {% endfor %}-->
+        <!--            </div>-->
+        <!--        </div>-->
+    </div>
+    <div class="block_4">
+        <!--        <div class="">-->
+        <!--            <div style="width:100%" class="meta block_4">-->
+        <!--                {{ seo.main_text|safe }}-->
+        <!--            </div>-->
+        <!--            <div class="row_open_all_meta">-->
+        <!--                <img style="padding-top:10px;" src="{% static 'shop/img/down.png' %}" alt="">-->
+        <!--            </div>-->
+        <!--        </div>-->
+    </div>
 </div>
-
-
-
 
 
 {% endblock %}

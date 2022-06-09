@@ -7,9 +7,10 @@ urlpatterns = [
     path('', include('content.urls'), name='home'),
     path('admin/', admin.site.urls),
     path('shop/', include('shop.urls'), name='shop'),
-    path('cart/', include('cart.urls')),
+    path('cart/', include('cart.urls'), name='cart'),
 
 ]
+handler404 = "main.views.page_not_found_view"
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

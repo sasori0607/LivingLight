@@ -10,14 +10,19 @@ $( window ).resize(function() {
 });
 
 function size_slider() {
-    if ($('body').width() <= 700){
-        $('.slider').css({'width':($('.main_shop').width()-50), 'margin':'25px'})
+    if ($('body').width() <= 680){
+        width = ($('.main_shop').width()-50)
+        $('.slider').css({'width':width, 'margin':'25px'})
+
 
     }else if($('body').width() <= 1240){
-        $('.slider').css({'width':($('.main_shop').width() - ($('.list-all-category').width()+80))-180, 'margin':'50px'})
+        width = ($('.main_shop').width() - ($('.list-all-category').width()+80))-180
+        $('.slider').css({'width': width, 'margin':'50px'})
     }else{
-        $('.slider').css({'width':(1240 - ($('.list-all-category').width()+80))-150, 'margin':'50px'})
+        width = (1240 - ($('.list-all-category').width()+80))-150
+        $('.slider').css({'width':width, 'margin':'50px'})
     }
+    $('.slide').css({'height':width/2})
 }
 
 function discount() {
@@ -54,17 +59,35 @@ $('.part_2').click(function(){
 })
 
 $('.row_open_all_meta img').click(function(){
-    let btn = $('.row_open_all_meta img').attr("src")
+    let element = 'row_open_all_meta'
+    open_seo(element, 'linear-gradient(180deg, transparent, #1c1c1c   50%)')
+})
+
+$('.row_open_all_meta_main img').click(function(){
+    let element = 'row_open_all_meta_main'
+    open_seo(element, 'linear-gradient(180deg, transparent, #000000fc  50%)')
+})
+
+function open_seo(element ,background) {
+    let btn = $(`.${element} img`).attr("src")
     if (btn == '/static/shop/img/down.png'){
         $('.meta').animate({'height': "100%", 'max-height':"1000px"}, 2000)
-        $('.row_open_all_meta').animate({'bottom':'0px'}, 2000)
-        $('.row_open_all_meta img').attr("src", '/static/shop/img/up.png')
+        $(`.${element}`).animate({'bottom':'15px'}, 2000)
+        $(`.${element} img`).attr("src", '/static/shop/img/up.png')
+
+        $(`.${element}`).css({'background':'rgb(0 0 0 / 0%)'})
+
     }else{
         $('.meta').animate({'height': "40%", 'max-height':"100px"}, 2000)
-        $('.row_open_all_meta').animate({'bottom':'30px'}, 2000)
-        $('.row_open_all_meta img').attr("src", '/static/shop/img/down.png')
+        $(`.${element}`).animate({'bottom':'30px'}, 2000)
+        $(`.${element} img`).attr("src", '/static/shop/img/down.png')
+        $(`.${element}`).css({'background':`${background}`})
+
     }
-})
+}
+
+
+
 
 
 $('.miniatures img').click(function(){
@@ -138,7 +161,6 @@ function add_in_basket(code) {
 
 function cart(amount) {
     $('.nav_body .cart .count').html(amount)
-
 }
 
 function down_basket(code, parent) {
@@ -271,7 +293,6 @@ $(document).on('click', '.plus', function(){
 
 $('.cart_exit').click(function(){
     close_cart()
-    console.log('123')
 })
 
 function close_cart(){
@@ -279,6 +300,17 @@ function close_cart(){
     $('.all_products').html(' ')
 
 }
+
+$('.form_exit').click(function(){
+    $('.form').addClass('hide')
+
+})
+
+$('.messages_exit').click(function(){
+    $('.ss').addClass('hide')
+
+})
+
 
 
 function api_novaposhta(modelName, method, town) {
@@ -391,7 +423,7 @@ $("form").submit(function(event ){
     console.log(data)
 
     data.done(function() {
-        console.log(data['responseJSON'])
+        window.location.replace("/");
   })
 
 

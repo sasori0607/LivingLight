@@ -5,7 +5,6 @@ from PIL import Image
 
 
 class Category(models.Model):
-
     slug = models.SlugField(unique=True, verbose_name="Slug категории")
     title = models.CharField(max_length=100, verbose_name="Имя категории")
 
@@ -13,11 +12,11 @@ class Category(models.Model):
         verbose_name = 'Категории'
         verbose_name_plural = 'Категория'
 
+    def get_absolute_url(self):
+        return reverse('shop_category', kwargs={'slug': self.slug})
+
     def __str__(self):
         return self.slug
-
-    def get_absolute_url(self):
-        reverse('shop_category', kwargs={'slug': self.category.slug})
 
 
 class Products(models.Model):
@@ -66,18 +65,9 @@ class Order(models.Model):
     tel = models.CharField(max_length=180, verbose_name="Телефон")
     comment = models.TextField(verbose_name="Коментарий", null=True)
     order = models.TextField(verbose_name="Заказ")
+    status = models.BooleanField(default=True, verbose_name='Актуальность заказа')
+
 
 class Photo(models.Model):
-
     image = models.ImageField(upload_to='photos')
     gallery = models.ForeignKey(Products, on_delete=models.CASCADE, related_name='pictures')
-
-
-
-
-
-
-
-
-
-

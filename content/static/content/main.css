@@ -1,10 +1,20 @@
+.s_container{
+    max-width:1240px;
+    display:flow-root;
+    margin-left:auto;
+    margin-right:auto;
+    padding:15px;
+}
+
 body{
     overflow-x: hidden;
     background: black;
+    font-family: 'Roboto', sans-serif;
 }
 .body{
     background:#1c1c1c;
     color:white;
+    font-family: 'Roboto', sans-serif;
 }
 
 nav{
@@ -253,11 +263,11 @@ nav .cart img{
 }
 
 .main_p .block_1 {
-    height:100vh;
-    background: no-repeat url('/static/content/img/try1.png') 15% 0;
+    min-height:100vh;
+    background: no-repeat url('/static/content/img/try0.webp') 50% 0;
     background-size: auto 100%;
     background-attachment: fixed;
-
+    padding: 30px 0px;
 }
 
 .main_p .headband{
@@ -266,16 +276,16 @@ nav .cart img{
 }
 
 .main_p .block_2 {
-    height:100vh;
+    min-height:100vh;
     color:red;
-     background: no-repeat url('/static/content/img/try2.webp') 15% 0;
+    background: no-repeat url('/static/content/img/try2.webp') 50% 0;
     background-size: auto 100%;
     background-attachment: fixed;
 
 }
 
 
-.left_position_1{
+.left_position{
     float:left;
 }
 
@@ -285,6 +295,9 @@ nav .cart img{
 @media (min-width: 700px){
     .w-30{
         width:30%;
+    }
+    .w-40{
+        width:40%;
     }
     .w-70{
         width:70%;
@@ -303,11 +316,14 @@ nav .cart img{
     .w-50{
         width:90%;
     }
+    .w-40{
+        width:85%;
+    }
 }
 
 .ceo_text{
     padding:10px;
-    margin:20px;
+    margin:20px 0px 10px 0px;
     height:100%;
     width:100%;
     background-color:white;
@@ -315,16 +331,27 @@ nav .cart img{
 }
 
 
-.shop_category, .main_shop, .shop_detail{
+.shop_category, .main_shop, .shop_detail, .main_p .block_3 .container{
     max-width:1240px;
     display:flow-root;
     margin-left:auto;
     margin-right:auto;
-    padding:15px;
+    padding:15px 0px;
     min-height:100vh;
     background:#1c1c1c;
     height:100%!important;
 }
+
+
+.block_4 > div{
+    max-width:1640px;
+    display:flow-root;
+    margin-left:auto;
+    margin-right:auto;
+    padding:15px;
+}
+
+
 
 @media (min-width: 700px){
     .shop_category, .main_shop{
@@ -387,7 +414,7 @@ nav .cart img{
     overflow: hidden;
     text-overflow: ellipsis;
     border: 2px solid rgba(255, 60, 80, 1);
-    background: #353754;
+    background:rgb(53 55 84 / 95%);
     box-shadow:
         0px 0px 15px 6px rgba(200, 60, 80, 0.32),
         0px 0px 18px 4px rgba(200, 60, 80, 0.32) inset;
@@ -396,7 +423,7 @@ nav .cart img{
 
 .product .image img{
     max-width:100%;
-    max-height:100%;
+    max-height:150px;;
     padding:2%;
 }
 .product .image a{
@@ -647,10 +674,9 @@ nav .cart img{
     overflow:hidden;
     height:40%;
     max-height:100px;
-    margin-top:25px;
 }
 
-.row_open_all_meta {
+.row_open_all_meta,  .row_open_all_meta_main{
   content: " ";
   position: relative;
   left: 0;
@@ -661,7 +687,7 @@ nav .cart img{
   text-align:center;
 }
 
-.main_shop h2{
+.main_shop h2, .block_3 h2 {
     margin-top:20px;
     margin-left:10px;
 }
@@ -672,15 +698,17 @@ nav .cart img{
     width:200px;
     margin:20px;
     display:flex;
-
 }
 
-.q{
-    height:400px;
+.slide{
+    height:auto;
     background:white;
     color:black;
 }
 
+.category_body {
+    width:100%;
+}
 .category_body h1 {
     margin-bottom: 30px;
     margin-left:30px;
@@ -839,14 +867,22 @@ nav .cart img{
 
 
 
-.cart_exit {
+.cart_exit, .form_exit {
     float: right;
     width: 30px;
     height:30px;
     margin:10px 0px 0px 0px ;
 
 }
-.cart_exit:after {
+
+.messages_exit {
+    float: right;
+    width: 10px;
+    height:10px;
+    margin:0px 0px 0px 20px ;
+}
+
+.cart_exit:after, .form_exit:after, .messages_exit:after  {
 
     content: '';
     height: 30px;
@@ -856,7 +892,7 @@ nav .cart img{
 
 }
 
-.cart_exit:before {
+.cart_exit:before, .form_exit:before, .messages_exit:before {
     content: '';
     height: 30px;
     border-left: 2px solid #fff;
@@ -889,19 +925,57 @@ nav .cart img{
 .footer{
     background:#040404;
     display: flex;
-    justify-content: center;
+    padding-left: 13%;
 
 }
+
+.footer ul{
+    list-style-type: none;
+    padding: 10px;
+}
+
 .foot_body{
     max-width: 1240px;
 }
+.footer > div{
+    margin:20px;
+}
+
+.footer p, .base-contacts div{
+    margin:5px;
+}
+
+.footer a,  footer{
+    font-size: 18px;
+    color: #ff0000;
+}
+
+.footer p{
+    font-size: 20px;
+    color: #002bff;
+}
+
+@media (max-width: 699px){
+    .footer {
+        flex-wrap: wrap;
+        padding-left: 5%;
+
+    }
+    .footer > div {
+        margin:5px;
+    }
+
+}
+
+
 
 .about{
-    padding:3%;
-    width:100%;
+    padding: 3%;
+    width: 100%;
     display: flex;
-    justify-content: center;
-    min-height:100vh;
+    min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
 }
 .about .block_1{
     max-width: 1240px;
@@ -929,6 +1003,7 @@ nav .cart img{
     border-radius: 10px;
     overflow-y:scroll;
 }
+
 .form_body::-webkit-scrollbar {
     display: none;
 }
@@ -949,6 +1024,7 @@ nav .cart img{
     margin: 9% 4.5% 0px 4.5%;
     height: 40px;
 }
+
 #comment{
     display:block;
     height:160px;
@@ -958,3 +1034,87 @@ nav .cart img{
     float:right;
     margin:0px 5% 5% 20px;
 }
+
+
+.form_body .container{
+    display: flex;
+    justify-content: space-between;
+}
+.form_body .container h3{
+    padding:10px;
+}
+
+.error{
+    background: #1c1c1c;
+    min-height:100vh;
+    padding:25px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ss{
+    position: absolute;
+    width:100%;
+    height:100vh;
+    z-index:5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(2 1 1 / 40%);
+}
+
+.ss .mess{
+    margin: 8%;
+    background:#00bb00;
+    padding: 15px;
+    border-radius:5px;
+    font-size:22px;
+    color:white;
+
+}
+
+.block_3, .block_3 .container, .block_4{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background:rgb(0 0 0 / 80%);
+}
+
+.main_p_meta{
+    position: relative;
+    bottom: -45px;
+}
+
+.main_p_meta .row_open_all_meta_main {
+    background:linear-gradient(180deg, transparent, #000000fc 50%)
+}
+.block_1 h2{
+    margin: 30px 0px 25px 10px;
+}
+
+.main_p .neonTextBlue, .main_p .neonText, .shop_body1 .neonTextBlue, .shop_body1 .neonText{
+    font-size:38px;
+    color:white!important;
+}
+.main_p .neonTextBlue, .shop_body1 .neonTextBlue{
+    text-align: start;
+}
+
+.cloudy{
+    display: flex;
+    flex-direction: column;
+
+}
+.cloudy_right{
+    margin-left: auto;
+}
+
+
+
+
+
+
+
+
+

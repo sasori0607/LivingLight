@@ -26,26 +26,26 @@
     <div class="shop_body1">
 
         <div class="single-item slider">
-            <div class="q">1</div>
-            <div class="q">2</div>
-            <div class="q">3</div>
-            <div class="q">4</div>
+            <div class="slide">1</div>
+            <div class="slide">2</div>
+            <div class="slide">3</div>
+            <div class="slide">4</div>
 
 
         </div>
 
-        <h2>Рекомендуем</h2>
+        <h2 class="neonTextBlue">Рекомендуем</h2>
         <div class="shop_body">
         {% for product in products %}
             {% if product.recommendation == True %}
             <div class="product">
                 <div class="image">
-                    <a href="{{ product.category.slug }}/{{ product.slug }}">
+                    <a href="{{ product.get_absolute_url }}">
                         <img src="{{ product.img.url }}" alt="{{ product.title }}">
                     </a>
                 </div>
                 <div class="title">
-                    <a href="{{ product.category.slug }}/{{ product.slug }}">
+                    <a href="{{ product.get_absolute_url }}">
                         {{ product.title }}
                     </a>
                 </div>
@@ -63,18 +63,18 @@
         {% endfor %}
         </div>
 
-        <h2>Новинки</h2>
+        <h2 class="neonTextBlue">Новинки</h2>
         <div class="shop_body">
         {% for product in products %}
             {% if product.newTrue == True %}
             <div class="product">
                 <div class="image">
-                    <a href="{{ product.category.slug }}/{{ product.slug }}">
+                    <a href="{{ product.get_absolute_url }}">
                         <img src="{{ product.img.url }}" alt="{{ product.title }}">
                     </a>
                 </div>
                 <div class="title">
-                    <a href="{{ product.category.slug }}/{{ product.slug }}">
+                    <a href="{{ product.get_absolute_url }}">
                         {{ product.title }}
                     </a>
                 </div>
@@ -92,7 +92,7 @@
         {% endfor %}
         </div>
 
-        <h2>Скидки</h2>
+        <h2 class="neonTextBlue">Скидки</h2>
         <div class="shop_body">
         {% for product in products %}
             {% if product.discountCheck == True %}

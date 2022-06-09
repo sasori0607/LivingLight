@@ -1,9 +1,15 @@
+from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.http import JsonResponse, HttpResponse
 
 from django.shortcuts import redirect, render
 from django.template import Template
-
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.authtoken.models import Token
+from cart.serializers import OrderSerializers
 from shop.models import *
 
 
@@ -11,31 +17,26 @@ def product_sum(dict):
     sumator = 0
     for i in dict:
         sumator += int(dict[i])
-    print(sumator)
     return sumator
 
 
 def price_sum(dict, data_b):
     price_sum = 0
-    print(dict, 'zzzzzzzzzzzzzzzzzzzzzz', data_b)
     for i in dict:
         data = data_b.filter(vendor_code=i[:-1])[0]
         if i[-1] == '1':
             price_sum += int(data.without_remote) * int(dict[i])
-            print(data.without_remote)
         elif i[-1] == '2':
             price_sum += int(data.with_remote) * int(dict[i])
-            print(data.with_remote)
         else:
             price_sum += int(data.prise_plate) * int(dict[i])
-            print(data.prise_plate)
         print(price_sum)
     return price_sum
 
 
 def basket_plus(request):
-
     data = request.POST
+    print(data)
     if 'cart' not in request.session:
         request.session['cart'] = {}
     dict = request.session['cart']
@@ -53,11 +54,7 @@ def basket_plus(request):
 def basket_minus(request):
 
     data = request.POST
-    if 'cart' not in request.session:
-        request.session['cart'] = {}
     dict = request.session['cart']
-    print(dict)
-    print(data)
     if int(dict[data['product']]) == 1:
         dict.pop(data['product'])
         amount = 0
@@ -132,12 +129,28 @@ def order(request):
     ord.tel = inp['tel']
     ord.comment = inp['comment']
     ord.save()
-    return JsonResponse({'1': 'Hello from Django!'})
-    # print(request.POST, 'FUCK')
-    # myscript = '<script type="text/javascript"> alert("123") <script>'
-    # myscript = Template(myscript)
-    # return render(Template(myscript), template_name='shop/main_shop.html')
-    #return redirect('/shop')
+    request.session['cart'] = {}
+    request.session['sum'] = 0
+
+
+    messages.success(request, f'{ord.name} ваша заявка принята! Мы свяжемся с вами в ближайшее время.')
+    return JsonResponse({'1': 'True'})
+
+
+class OrderViewSet(ModelViewSet):
+
+
+    permissions_classes = [IsAuthenticated]
+    queryset = Order.objects.all()
+    queryset = queryset.filter(status=True)
+    serializer_class = OrderSerializers
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    filter_fields = ['status']
+    search_fields = ['name', 'town', 'tel']
+
+
+
+
 
 
 
