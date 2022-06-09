@@ -1,5 +1,6 @@
 pictures/
 htmlcov
-.env.dev
-.env.dev.db
-db.sqlite3
+/.env.dev
+/.env.dev.db
+/db.sqlite3
+
